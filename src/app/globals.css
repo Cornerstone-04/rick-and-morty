@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "SF Pro Display";
+  src: url("/public/fonts/SFPRODISPLAYREGULAR.OTF") format("otf");
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -24,10 +29,23 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  font-family: "SF Pro Display";
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .logo {
+    @apply flex justify-center items-center h-8 text-xl font-bold cursor-pointer;
+  }
+
+  .nav-link {
+    @apply pb-2 hover:text-primary transition-all ease-linear font-semibold;
+  }
+
+  .home-btn {
+    @apply h-[48px] min-w-[144px] font-semibold flex justify-center items-center rounded-lg py-[14.5px] px-[28.5px];
   }
 }
