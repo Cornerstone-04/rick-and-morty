@@ -9,7 +9,7 @@
 
 body {
   color: #ffffff;
-  /* background-color: #16161D; */
+  background-color: #16161d;
   font-family: "SF Pro Display";
 }
 
@@ -18,9 +18,15 @@ body {
   background-image: url("/images/rick_and_morty_bg1.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
-  backdrop-filter: blur(10px);
   background-attachment: fixed;
-  /* color: #1cf544; */
+}
+
+.bg-image-2 {
+  background-image: url("/images/rick_and_morty_bg5.png");
+}
+
+.bg-image-3 {
+  background-image: url("/images/rick_and_morty_bg3.jpg");
 }
 
 @layer utilities {
@@ -34,6 +40,10 @@ body {
 
   .nav-link {
     @apply pb-2 hover:text-primary transition-all ease-linear font-semibold;
+  }
+
+  .active {
+    @apply text-primary;
   }
 
   .home-btn {

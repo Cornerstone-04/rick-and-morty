@@ -19,7 +19,8 @@ const config: Config = {
       },
       colors: {
         primary: "#1C85F5",
-        "mid-white": "rgba(225,225,225,80)"
+        "mid-white": "rgba(225,225,225,80)",
+        backdrop: "#16161D"
       },
     },
   },

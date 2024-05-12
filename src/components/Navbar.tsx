@@ -1,16 +1,24 @@
-import Link from "next/link";
+"use client";
+
 import React from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   return (
     <nav className="flex justify-between items-center">
-      <Link href={"/"} className="logo">
-        <div className="w-fit p-2 bg-primary rounded">Rick</div>
-        <div className="w-fit p-2 text-white">Morty</div>
-      </Link>
+      <header>
+        <Link href="/" className="logo">
+          <div className="w-fit p-2 bg-primary rounded">Rick</div>
+          <div className="w-fit p-2 text-white">Morty</div>
+        </Link>
+      </header>
       <div className="flex gap-16">
-        <Link href={"/characters"} className="nav-link">Characters</Link>
-        <Link href={"/episodes"} className="nav-link">Episodes</Link>
+        <Link href="/characters" className="nav-link">
+          Characters
+        </Link>
+        <Link href="/episodes" className="nav-link">
+          Episodes
+        </Link>
       </div>
     </nav>
   );

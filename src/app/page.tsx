@@ -16,18 +16,8 @@ const Home: FC = () => {
   };
   return (
     <main className="relative w-full min-h-screen overflow-y-auto bg-image">
-      {/* <Image
-        src={BgOne}
-        layout="fill"
-        objectFit="cover"
-        objectPosition="center"
-        quality={100}
-        alt="background"
-        style={{
-          backdropFilter: "10px",
-        }}
-      /> */}
-      <div className="min-h-screen  flex flex-col justify-start gap-[7.5rem] w-full bg-bg-rm bg-[#16161D] bg-opacity-40">
+      
+      <div className="min-h-screen flex flex-col justify-start gap-[7.5rem] w-full bg-backdrop bg-opacity-40 backdrop-blur-[1px]">
         <section className="px-[7.5rem] pt-10 ">
           <Navbar />
         </section>
