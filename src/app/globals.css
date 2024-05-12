@@ -4,32 +4,23 @@
 
 @font-face {
   font-family: "SF Pro Display";
-  src: url("/public/fonts/SFPRODISPLAYREGULAR.OTF") format("otf");
-}
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  src: url("/fonts/SFPRODISPLAYREGULAR.OTF") format("otf");
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: #ffffff;
+  /* background-color: #16161D; */
   font-family: "SF Pro Display";
+}
+
+.bg-image {
+  width: 100%;
+  background-image: url("/images/rick_and_morty_bg1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(10px);
+  background-attachment: fixed;
+  /* color: #1cf544; */
 }
 
 @layer utilities {
