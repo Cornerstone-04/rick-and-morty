@@ -1,29 +1,39 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "@/api/axios";
+import { CharacterInterface } from "./interface";
 
-const Character = ({ params }: { params: { character: number } }) => {
-  const [character, setCharacter] = useState<{}>({});
+interface CharacterProps {
+  params: { character: number };
+}
+
+const Character = ({ params }: CharacterProps) => {
+  const [character, setCharacter] = useState<CharacterInterface | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchCharacter = async () => {
+    setError(null);
     try {
       const response = await axios.get(`/character/${params.character}`);
-      console.log(response);
       if (response.status === 200) {
         setCharacter(response.data);
       }
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   };
 
   useEffect(() => {
     fetchCharacter();
-  }, []);
+  }, [params.character]);
 
-  useEffect(() => {
-    console.log(character);
-  }, [character]);
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!character) {
+    return <div>Loading character details...</div>;
+  }
 
   return (
     <div className="flex flex-col items-start">

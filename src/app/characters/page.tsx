@@ -27,7 +27,7 @@ const Characters = () => {
         setTotalPages(response.data.info.pages);
       }
     } catch (error) {
-      console.error("Error fetching characters:", error);
+      throw error;
     } finally {
       setIsloading(false);
     }
