@@ -16,17 +16,22 @@ const Characters = () => {
     setTotalPages,
   } = useCharacterStore();
   const [isLoading, setIsloading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchCharacters = async (pageNum: number = page) => {
     setIsloading(true);
+    setError(null);
     try {
       const response = await axios.get(`/character/?page=${pageNum}`);
       if (response.status === 200) {
         setCharacters(response.data.results);
         setPage(pageNum);
         setTotalPages(response.data.info.pages);
+      } else {
+        setError("Failed to fetch characters");
       }
     } catch (error) {
+      setError("An error occcured while fetching characters.");
       throw error;
     } finally {
       setIsloading(false);
@@ -36,6 +41,21 @@ const Characters = () => {
   useEffect(() => {
     if (characters.length === 0) fetchCharacters();
   }, [page]);
+
+  if (isLoading) {
+    return (
+      <div>
+        <h1 className="text-3xl font-bold">Loading...</h1>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div>
+        <h1 className="text-3xl font-bold">Error: {error}</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col gap-8 pb-12">

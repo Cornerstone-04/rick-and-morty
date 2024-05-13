@@ -17,8 +17,11 @@ const Character = ({ params }: CharacterProps) => {
       const response = await axios.get(`/character/${params.character}`);
       if (response.status === 200) {
         setCharacter(response.data);
+      } else {
+        setError("Failed to fetch character details.");
       }
     } catch (error) {
+      setError("An error occured while fecthing character details.");
       throw error;
     }
   };
