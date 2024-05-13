@@ -11,7 +11,7 @@ interface CharactersState {
   setTotalPages: (totalPages: number) => void;
 }
 
-const useCharacterStore = create<CharactersState>(
+const useCharacterStore = create<CharactersState>()(
   persist(
     (set) => ({
       characters: [],

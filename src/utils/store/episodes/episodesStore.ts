@@ -1,21 +1,21 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Episode } from "./episodesInterface";
+import { Episodes } from "./episodesInterface";
 
 interface EpisodesState {
-  episodes: Episode[];
-  setEpisodes: (episodes: Episode[]) => void;
+  episodes: Episodes[];
+  setEpisodes: (episodes: Episodes[]) => void;
   page: number;
   setPage: (page: number) => void;
   totalPages: number;
   setTotalPages: (totalPages: number) => void;
 }
 
-const useEpisodeStore = create<EpisodesState>(
+const useEpisodeStore = create<EpisodesState>()(
   persist(
     (set) => ({
       episodes: [],
-      setEpisodes: (episodes: Episode[]): void => set({ episodes }),
+      setEpisodes: (episodes: Episodes[]): void => set({ episodes }),
       page: 1,
       setPage: (page: number) => set({ page }),
       totalPages: 0,

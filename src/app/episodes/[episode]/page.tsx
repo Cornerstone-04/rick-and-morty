@@ -1,9 +1,10 @@
 "use client";
 
 import axios from "@/api/axios";
-import { EpisodeInterface } from "@/utils/store/episodes/episodesInterface";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { EpisodeInterface } from "./interface";
 
 interface EpisodeProp {
   params: { episode: number };
@@ -28,8 +29,8 @@ const Episode = ({ params }: EpisodeProp) => {
     } catch (error) {
       setError("An error occured while fecthing episode details.");
       throw error;
-    }finally{
-      setIsloading(false)
+    } finally {
+      setIsloading(false);
     }
   };
 
@@ -56,19 +57,6 @@ const Episode = ({ params }: EpisodeProp) => {
           <h1 className="text-xl font-bold">{episode.name}</h1>
           <p>Episode: {episode.episode}</p>
           <p>Aired: {episode.air_date}</p>
-          {/* <p>
-            Characters:
-            <ul>
-              {episode.characters.map((character) => (
-                <li key={character}><Link href={character}>{character}</Link></li>
-              ))}
-            </ul>{" "}
-          </p> */}
-
-          {/*<p>Species: {episode.species}</p>
-          <p>Gender: {episode.gender}</p>
-          <p>Origin: {episode.origin?.name}</p>
-          <p>Location: {episode.location?.name}</p> */}
         </div>
       </section>
       <section>{/* carousel */}</section>

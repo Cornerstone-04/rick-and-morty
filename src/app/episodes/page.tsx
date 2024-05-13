@@ -85,7 +85,7 @@ const Episodes = () => {
             key={id}
             className="w-[300px] h-[300px] character-image cursor-pointer hover:scale-[1.1] transition-all ease-linear relative"
           >
-            <img src="/images/rick_and_morty_cover.jpeg" alt={episode.name} />
+            <img src="/images/rick_and_morty_cover.jpeg" alt={name} />
             <div className="w-full h-full image-overlay !opacity-100">
               <Link href={`/episodes/${id}`} className="image-name">
                 <em className="text-sm text-mid-white">{episode}</em>
