@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "@/api/axios";
-import useCharacterStore from "@/utils/store/charactersStore";
+import useCharacterStore from "@/utils/store/characters/charactersStore";
 import Link from "next/link";
 import { NavArrow } from "../../../public/icons";
 
@@ -18,7 +18,7 @@ const Characters = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchCharacters = async (pageNum: number = page) => {
+  const fetchCharacters = async (pageNum: number = page): Promise<void> => {
     setIsloading(true);
     setError(null);
     try {
@@ -49,6 +49,7 @@ const Characters = () => {
       </div>
     );
   }
+  
   if (error) {
     return (
       <div>
