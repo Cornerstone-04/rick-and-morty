@@ -48,10 +48,9 @@ const Episode = ({ params }: EpisodeProp) => {
 
   return (
     <div className="flex flex-col items-start">
-      <section className="flex gap-8 items-start">
-        <div className="w-[300px] flex flex-col gap-2">
+      <section className="flex flex-col md:flex-row gap-8 items-start">
+        <div className="w-fit md:w-[300px] flex items-center justify-center">
           <img src={"/images/rick_and_morty_cover.jpeg"} alt={episode.name} />
-          <h1 className="text-xl font-bold">{episode.name}</h1>
         </div>
         <div className="flex flex-col gap-2 text-lg">
           <h1 className="text-xl font-bold">{episode.name}</h1>

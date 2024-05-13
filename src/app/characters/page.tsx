@@ -42,14 +42,14 @@ const Characters = () => {
     if (characters.length === 0) fetchCharacters();
   }, [page]);
 
-  if (isLoading) {
+  if ((!characters && isLoading) || !characters || isLoading) {
     return (
       <div>
         <h1 className="text-3xl font-bold">Loading...</h1>
       </div>
     );
   }
-  
+
   if (error) {
     return (
       <div>
@@ -84,11 +84,11 @@ const Characters = () => {
           </button>
         </div>
       </header>
-      <section className="flex gap-8 flex-wrap">
+      <section className="flex gap-8 flex-wrap justify-center md:justify-start items-center">
         {characters?.map(({ name, id, image }) => (
           <div
             key={id}
-            className="w-[300px] h-[300px] character-image cursor-pointer hover:scale-[1.1] transition-all ease-linear relative"
+            className="w-full md:w-[300px] h-full md:h-[300px] character-image cursor-pointer hover:scale-[1.06] md:hover:scale-[1.1] transition-all ease-linear relative"
           >
             <img src={image} alt={name} className="" />
             <div className="w-full h-full image-overlay">

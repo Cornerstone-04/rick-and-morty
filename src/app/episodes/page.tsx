@@ -79,11 +79,11 @@ const Episodes = () => {
           </button>
         </div>
       </header>
-      <section className="flex gap-8 flex-wrap">
+      <section className="flex gap-8 flex-wrap justify-center md:justify-start items-center">
         {episodes?.map(({ name, id, episode }) => (
           <div
             key={id}
-            className="w-[300px] h-[300px] character-image cursor-pointer hover:scale-[1.1] transition-all ease-linear relative"
+            className="w-full sm:w-[300px] h-[366px] sm:h-[300px] character-image cursor-pointer hover:scale-[1.06] md:hover:scale-[1.1] transition-all ease-linear relative"
           >
             <img src="/images/rick_and_morty_cover.jpeg" alt={name} />
             <div className="w-full h-full image-overlay !opacity-100">

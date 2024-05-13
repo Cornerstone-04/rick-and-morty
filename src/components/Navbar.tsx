@@ -12,7 +12,7 @@ const Navbar = () => {
           <div className="w-fit p-2 text-white">Morty</div>
         </Link>
       </header>
-      <div className="flex gap-16">
+      <div className="flex gap-4 md:gap-16 items-center">
         <Link href="/characters" className="nav-link">
           Characters
         </Link>

@@ -22,11 +22,22 @@ body {
 }
 
 .bg-image-2 {
-  background-image: url("/images/rick_and_morty_bg5.png");
+  background-image: url("/images/rick_and_morty_bg2.png");
 }
 
 .bg-image-3 {
-  background-image: url("/images/rick_and_morty_bg3.jpg");
+  background-image: url("/images/rick_and_morty_bg3.jpeg");
+}
+
+@media (max-width: 768px) {
+  .bg-image {
+    background-image: url("/images/rick_and_morty_bg1_mobile.jpeg");
+    background-position: right;
+  }
+  .bg-image-2 {
+    background-image: url("/images/rick_and_morty_bg2_mobile.jpg");
+    background-position: right;
+  }
 }
 
 @layer utilities {
@@ -39,7 +50,7 @@ body {
   }
 
   .nav-link {
-    @apply pb-2 hover:text-primary transition-all ease-linear font-semibold;
+    @apply hover:text-primary transition-all ease-linear font-semibold;
   }
 
   .active {

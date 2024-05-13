@@ -39,9 +39,9 @@ const Character = ({ params }: CharacterProps) => {
   }
 
   return (
-    <div className="flex flex-col items-start">
-      <section className="flex gap-8 items-start">
-        <div className="w-[300px] flex flex-col gap-2">
+    <div className="w-full flex flex-col items-start">
+      <section className="flex flex-col md:flex-row gap-8 items-start w-full">
+        <div className="w-fit md:w-[300px] flex flex-col gap-2">
           <img src={character.image} alt={character.name} />
           <h1 className="text-xl font-bold">{character.name}</h1>
         </div>
