@@ -18,9 +18,11 @@ const config: Config = {
         "sf-pro-display": ["SF Pro Display", "sans-serif"],
       },
       colors: {
-        primary: "#1C85F5",
+        primary: "#4BE41A",
         "mid-white": "rgba(225,225,225,80)",
-        backdrop: "#16161D"
+        backdrop: "#283724",
+        nero: "#252525",
+        // "rm-purple": "#2c345c",
       },
     },
   },
