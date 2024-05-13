@@ -2,10 +2,8 @@
 
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
-import { BgOne } from "../../public/images";
 
 const Home: FC = () => {
   const route = useRouter();
@@ -16,7 +14,6 @@ const Home: FC = () => {
   };
   return (
     <main className="relative w-full min-h-screen overflow-y-auto bg-image">
-      
       <div className="min-h-screen flex flex-col justify-start gap-[7.5rem] w-full bg-backdrop bg-opacity-40 backdrop-blur-[1px]">
         <section className="px-[7.5rem] pt-10 ">
           <Navbar />
@@ -47,10 +44,6 @@ const Home: FC = () => {
             <Button type="primary" label="Watch Trailer" action={handleClick} />
           </div>
         </section>
-
-        {/* <section>slide show here
-        something
-        </section> */}
       </div>
     </main>
   );
