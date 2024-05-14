@@ -49,11 +49,11 @@ body {
 
   .nav-link {
     @apply hover:text-primary transition-all ease-linear font-semibold;
-    .active {
-      @apply text-primary;
-    }
   }
-
+  .active {
+    @apply text-primary;
+  }
+  
   .home-btn {
     @apply h-[48px] min-w-[144px] font-semibold flex justify-center items-center rounded-lg py-[14.5px] px-[28.5px];
   }

@@ -2,8 +2,21 @@
 
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+interface Navigation {
+  name: string;
+  href: string;
+}
 
 let Navbar = () => {
+  let pathName:string = usePathname();
+  let isActive = (pathname: string): boolean => pathName === pathname;
+  let navLinks: Navigation[] = [
+    { name: "Characters", href: "/characters" },
+    { name: "Episodes", href: "/episodes" },
+  ];
+
   return (
     <nav className="flex justify-between items-center">
       <header>
@@ -13,12 +26,15 @@ let Navbar = () => {
         </Link>
       </header>
       <div className="flex gap-4 md:gap-16 items-center">
-        <Link href="/characters" className="nav-link">
-          Characters
-        </Link>
-        <Link href="/episodes" className="nav-link">
-          Episodes
-        </Link>
+        {navLinks.map(({ name, href }) => (
+          <Link
+            key={name}
+            href={href}
+            className={`nav-link ${isActive(href) ? "active" : ""}`}
+          >
+            {name}
+          </Link>
+        ))}
       </div>
     </nav>
   );

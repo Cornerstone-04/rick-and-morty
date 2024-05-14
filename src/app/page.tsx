@@ -17,7 +17,7 @@ let Home: FC = () => {
   return (
     <main className="relative w-full min-h-screen overflow-y-auto bg-image">
       <div className="min-h-screen flex flex-col justify-start gap-[7.5rem] w-full bg-backdrop bg-opacity-60 md:bg-opacity-40 backdrop-blur-[1px]">
-        <section className="px-6 md:px-[7.5rem] pt-7 ">
+        <section className="px-6 md:px-[7.5rem] pt-10">
           <Navbar />
         </section>
 
