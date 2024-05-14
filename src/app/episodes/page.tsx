@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import axios from "@/api/axios";
 import useEpisodeStore from "@/utils/store/episodes/episodes";
-import { useEffect, useState } from "react";
 import { NavArrow } from "../../../public/icons";
 import Link from "next/link";
 

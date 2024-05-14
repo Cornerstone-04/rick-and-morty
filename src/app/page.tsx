@@ -45,7 +45,7 @@ let Home: FC = () => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen={true}
-                className="!w-full md:!w-[500px] xl:!w-[1000px] !h-auto md:!h-[285px] xl:!h-[565px]"
+                className="!w-full md:!w-[500px] xl:!w-[1000px] !h-[250px] md:!h-[285px] xl:!h-[565px]"
               ></iframe>
             </section>
           )}

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "@/api/axios";
+import axios from "@/api/axios"
 import { CharacterType } from "./type";
 
 interface CharacterProps {
