@@ -10,7 +10,7 @@ interface CharacterProps {
 
 let Character = ({ params }: CharacterProps) => {
   let [character, setCharacter] = useState<CharacterType | null>(null);
-  let [isLoading, setIsLoading] = useState<boolean | undefined>(undefined);
+  let [isLoading, setIsLoading] = useState<boolean>(false);
   let [error, setError] = useState<string | undefined>(undefined);
 
   let fetchCharacter = async () => {

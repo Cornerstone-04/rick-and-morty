@@ -12,11 +12,11 @@ interface EpisodeProp {
 let Episode = ({ params }: EpisodeProp) => {
   let [episode, setEpisode] = useState<EpisodeType | null>(null);
   let [error, setError] = useState<string | null>(null);
-  let [isLoading, setIsloading] = useState<boolean>(false);
+  let [isLoading, setIsLoading] = useState<boolean>(false);
 
   let fetchEpisode = async () => {
     setError(null);
-    setIsloading(true);
+    setIsLoading(true);
 
     let getEpisode = async () => {
       let response = await axios.get(`/episode/${params.episode}`);
@@ -28,7 +28,7 @@ let Episode = ({ params }: EpisodeProp) => {
     } catch (error) {
       setError("An error occured while fecthing episode details.");
     } finally {
-      setIsloading(false);
+      setIsLoading(false);
     }
   };
 

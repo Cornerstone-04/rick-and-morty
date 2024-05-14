@@ -11,11 +11,11 @@ import DisplayCard from "@/components/DisplayCard";
 let Episodes = () => {
   let { episodes, setEpisodes, page, setPage, totalPages, setTotalPages } =
     useEpisodeStore();
-  let [isLoading, setIsloading] = useState<boolean | undefined>(undefined);
+  let [isLoading, setIsLoading] = useState<boolean>(false);
   let [error, setError] = useState<string | undefined>(undefined);
 
   let fetchEpisodes = async (pageNum: number = page): Promise<void> => {
-    setIsloading(true);
+    setIsLoading(true);
     setError(undefined);
 
     let getEpisodes = async () => {
@@ -32,7 +32,7 @@ let Episodes = () => {
       setError("An error occcured while fetching characters.");
       throw error;
     } finally {
-      setIsloading(false);
+      setIsLoading(false);
     }
   };
 
@@ -92,24 +92,6 @@ let Episodes = () => {
           </>
         )}
       </section>
-      {!isLoading && (
-        <section className="w-full flex justify-between absolute bottom-0">
-          <button
-            onClick={() => fetchEpisodes(1)}
-            disabled={page === 1}
-            className="bottom-nav"
-          >
-            &lt;&lt; First Page
-          </button>
-          <button
-            onClick={() => fetchEpisodes(totalPages)}
-            disabled={page >= totalPages}
-            className="bottom-nav"
-          >
-            Last Page&gt;&gt;
-          </button>
-        </section>
-      )}
     </div>
   );
 };

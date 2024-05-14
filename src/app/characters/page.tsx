@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import axios from "@/api/axios";
 import useCharacterStore from "@/utils/store/characters/characters";
-import Link from "next/link";
 import { NavArrow } from "../../../public/icons";
 import Loader from "@/components/loader/Loader";
 import DisplayCard from "@/components/DisplayCard";
@@ -11,11 +10,11 @@ import DisplayCard from "@/components/DisplayCard";
 let Characters = () => {
   let { characters, setCharacters, page, setPage, totalPages, setTotalPages } =
     useCharacterStore();
-  let [isLoading, setIsloading] = useState<boolean | undefined>(undefined);
+  let [isLoading, setIsLoading] = useState<boolean>(false);
   let [error, setError] = useState<string | undefined>(undefined);
 
   let fetchCharacters = async (pageNum: number = page): Promise<void> => {
-    setIsloading(true);
+    setIsLoading(true);
     setError(undefined);
 
     let getCharacters = async () => {
@@ -31,7 +30,7 @@ let Characters = () => {
     } catch (error) {
       setError("An error occcured while fetching characters.");
     } finally {
-      setIsloading(false);
+      setIsLoading(false);
     }
   };
 
@@ -90,22 +89,24 @@ let Characters = () => {
           </>
         )}
       </section>
-      <section className="w-full flex justify-between absolute bottom-0">
-        <button
-          onClick={() => fetchCharacters(1)}
-          disabled={page === 1}
-          className="bottom-nav"
-        >
-          &lt;&lt; First Page
-        </button>
-        <button
-          onClick={() => fetchCharacters(totalPages)}
-          disabled={page >= totalPages}
-          className="bottom-nav"
-        >
-          Last Page&gt;&gt;
-        </button>
-      </section>
+      {characters.length > 0 ? (
+        <section className="w-full flex justify-between absolute bottom-0">
+          <button
+            onClick={() => fetchCharacters(1)}
+            disabled={page === 1}
+            className="bottom-nav"
+          >
+            &lt;&lt; First Page
+          </button>
+          <button
+            onClick={() => fetchCharacters(totalPages)}
+            disabled={page >= totalPages}
+            className="bottom-nav"
+          >
+            Last Page&gt;&gt;
+          </button>
+        </section>
+      ) : null}
     </div>
   );
 };
