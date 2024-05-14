@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-type DisplayCardProps = {
+interface DisplayCardProps  {
   key: number;
   image: string;
   alt: string;

@@ -2,11 +2,11 @@
 
 import React, { FC } from "react";
 
-type ButtonProps = {
+interface ButtonProps {
   label: string;
   action?: () => void;
   type: string;
-};
+}
 
 let Button: FC<ButtonProps> = ({ label, action, type }) => {
   return (

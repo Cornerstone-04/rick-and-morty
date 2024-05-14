@@ -1,14 +1,14 @@
 "use client";
 
-import { FC, useState } from "react";
+import { useState } from "react";
 import Button from "@/components/Button";
 import Navbar from "@/components/Navbar";
 import Labels from "@/components/Labels";
 
-let Home: FC = () => {
+let Home = () => {
   let [videoIsActive, setVideoIsActive] = useState<boolean>(false);
 
-  let handleClick = (): void => {
+  let handleClick = () => {
     setVideoIsActive((prev) => !prev);
   };
 

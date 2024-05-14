@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import axios from "@/api/axios";
 import useEpisodeStore from "@/utils/store/episodes/episodes";
 import { NavArrow } from "../../../public/icons";
-import Link from "next/link";
 import Loader from "@/components/loader/Loader";
 import DisplayCard from "@/components/DisplayCard";
 
@@ -14,7 +13,7 @@ let Episodes = () => {
   let [isLoading, setIsLoading] = useState<boolean>(false);
   let [error, setError] = useState<string | undefined>(undefined);
 
-  let fetchEpisodes = async (pageNum: number = page): Promise<void> => {
+  let fetchEpisodes = async (pageNum: number = page) => {
     setIsLoading(true);
     setError(undefined);
 

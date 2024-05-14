@@ -13,7 +13,7 @@ let Characters = () => {
   let [isLoading, setIsLoading] = useState<boolean>(false);
   let [error, setError] = useState<string | undefined>(undefined);
 
-  let fetchCharacters = async (pageNum: number = page): Promise<void> => {
+  let fetchCharacters = async (pageNum: number = page) => {
     setIsLoading(true);
     setError(undefined);
 
