@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from "react";
 import axios from "@/api/axios";
-import useCharacterStore from "@/utils/store/characters/charactersStore";
+import useCharacterStore from "@/utils/store/characters/characters";
 import Link from "next/link";
 import { NavArrow } from "../../../public/icons";
 
-const Characters = () => {
-  const {
+let Characters = () => {
+  let {
     characters,
     setCharacters,
     page,
@@ -15,34 +15,35 @@ const Characters = () => {
     totalPages,
     setTotalPages,
   } = useCharacterStore();
-  const [isLoading, setIsloading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  let [isLoading, setIsloading] = useState<boolean>(false);
+  let [error, setError] = useState<string | null>(null);
 
-  const fetchCharacters = async (pageNum: number = page): Promise<void> => {
+  let fetchCharacters = async (pageNum: number = page): Promise<void> => {
     setIsloading(true);
     setError(null);
+
+    let getCharacters = async () => {
+      let response = await axios.get(`/character/?page=${pageNum}`);
+
+      setCharacters(response.data.results);
+      setPage(pageNum);
+      setTotalPages(response.data.info.pages);
+    };
+
     try {
-      const response = await axios.get(`/character/?page=${pageNum}`);
-      if (response.status === 200) {
-        setCharacters(response.data.results);
-        setPage(pageNum);
-        setTotalPages(response.data.info.pages);
-      } else {
-        setError("Failed to fetch characters");
-      }
+      await getCharacters();
     } catch (error) {
       setError("An error occcured while fetching characters.");
-      throw error;
     } finally {
       setIsloading(false);
     }
   };
 
   useEffect(() => {
-    if (characters.length === 0) fetchCharacters();
-  }, [page]);
+    fetchCharacters();
+  }, []);
 
-  if ((!characters && isLoading) || !characters || isLoading) {
+  if (isLoading || !characters) {
     return (
       <div>
         <h1 className="text-3xl font-bold">Loading...</h1>

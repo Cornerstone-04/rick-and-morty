@@ -1,30 +1,31 @@
 "use client";
 
 import axios from "@/api/axios";
-import useEpisodeStore from "@/utils/store/episodes/episodesStore";
+import useEpisodeStore from "@/utils/store/episodes/episodes";
 import { useEffect, useState } from "react";
 import { NavArrow } from "../../../public/icons";
 import Link from "next/link";
 
-const Episodes = () => {
-  const { episodes, setEpisodes, page, setPage, totalPages, setTotalPages } =
+let Episodes = () => {
+  let { episodes, setEpisodes, page, setPage, totalPages, setTotalPages } =
     useEpisodeStore();
-  const [isLoading, setIsloading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  let [isLoading, setIsloading] = useState<boolean>(false);
+  let [error, setError] = useState<string | null>(null);
 
-  const fetchEpisodes = async (pageNum: number = page): Promise<void> => {
+  let fetchEpisodes = async (pageNum: number = page): Promise<void> => {
     setIsloading(true);
     setError(null);
+
+    let getEpisodes = async () => {
+      let response = await axios.get(`/episode/?page=${pageNum}`);
+
+      setEpisodes(response.data.results);
+      setPage(pageNum);
+      setTotalPages(response.data.info.pages);
+    };
+
     try {
-      const response = await axios.get(`/episode/?page=${pageNum}`);
-      console.log(response);
-      if (response.status === 200) {
-        setEpisodes(response.data.results);
-        setPage(pageNum);
-        setTotalPages(response.data.info.pages);
-      } else {
-        setError("Failed to fetch characters");
-      }
+      await getEpisodes();
     } catch (error) {
       setError("An error occcured while fetching characters.");
       throw error;
@@ -34,8 +35,8 @@ const Episodes = () => {
   };
 
   useEffect(() => {
-    if (episodes.length === 0) fetchEpisodes();
-  }, [page]);
+    fetchEpisodes();
+  }, []);
 
   if (isLoading) {
     return (

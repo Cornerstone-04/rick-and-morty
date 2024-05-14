@@ -8,7 +8,7 @@ type ButtonProps = {
   type: string;
 };
 
-const Button: FC<ButtonProps> = ({ label, action, type }) => {
+let Button: FC<ButtonProps> = ({ label, action, type }) => {
   return (
     <button
       onClick={action}

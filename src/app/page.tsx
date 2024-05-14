@@ -5,13 +5,15 @@ import Navbar from "@/components/Navbar";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 
-const Home: FC = () => {
+let Home: FC = () => {
   const route = useRouter();
-  const handleClick = (): void => {
+
+  let handleClick = (): void => {
     route.push(
       "https://www.imdb.com/video/vi1423230745/?playlistId=tt2861424&ref_=ext_shr_lnk"
     );
   };
+
   return (
     <main className="relative w-full min-h-screen overflow-y-auto bg-image">
       <div className="min-h-screen flex flex-col justify-start gap-[7.5rem] w-full bg-backdrop bg-opacity-60 md:bg-opacity-40 backdrop-blur-[1px]">

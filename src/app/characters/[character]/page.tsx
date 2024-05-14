@@ -1,28 +1,28 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "@/api/axios";
-import { CharacterInterface } from "./interface";
+import { CharacterType } from "./type";
 
 interface CharacterProps {
   params: { character: number };
 }
 
-const Character = ({ params }: CharacterProps) => {
-  const [character, setCharacter] = useState<CharacterInterface | null>(null);
-  const [error, setError] = useState<string | null>(null);
+let Character = ({ params }: CharacterProps) => {
+  let [character, setCharacter] = useState<CharacterType | null>(null);
+  let [error, setError] = useState<string | null>(null);
 
-  const fetchCharacter = async () => {
+  let fetchCharacter = async () => {
     setError(null);
+
+    let getCharacter = async () => {
+      let response = await axios.get(`/character/${params.character}`);
+      setCharacter(response.data);
+    };
+
     try {
-      const response = await axios.get(`/character/${params.character}`);
-      if (response.status === 200) {
-        setCharacter(response.data);
-      } else {
-        setError("Failed to fetch character details.");
-      }
+      await getCharacter();
     } catch (error) {
       setError("An error occured while fecthing character details.");
-      throw error;
     }
   };
 
@@ -41,7 +41,7 @@ const Character = ({ params }: CharacterProps) => {
   return (
     <div className="w-full flex flex-col items-start">
       <section className="flex flex-col md:flex-row gap-8 items-start w-full">
-        <div className="w-fit md:w-[300px] flex flex-col gap-2">
+        <div className="w-full md:w-[300px] flex flex-col gap-2">
           <img src={character.image} alt={character.name} />
           <h1 className="text-xl font-bold">{character.name}</h1>
         </div>

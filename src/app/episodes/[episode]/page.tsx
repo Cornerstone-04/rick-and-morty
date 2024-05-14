@@ -1,34 +1,31 @@
 "use client";
 
-import axios from "@/api/axios";
-
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { EpisodeInterface } from "./interface";
+import { EpisodeType } from "./type";
+import axios from "@/api/axios";
 
 interface EpisodeProp {
   params: { episode: number };
 }
 
-const Episode = ({ params }: EpisodeProp) => {
-  const [episode, setEpisode] = useState<EpisodeInterface | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [isLoading, setIsloading] = useState<boolean>(false);
+let Episode = ({ params }: EpisodeProp) => {
+  let [episode, setEpisode] = useState<EpisodeType | null>(null);
+  let [error, setError] = useState<string | null>(null);
+  let [isLoading, setIsloading] = useState<boolean>(false);
 
-  const fetchEpisode = async () => {
+  let fetchEpisode = async () => {
     setError(null);
     setIsloading(true);
 
+    let getEpisode = async () => {
+      let response = await axios.get(`/episode/${params.episode}`);
+      setEpisode(response.data);
+    };
+
     try {
-      const response = await axios.get(`/episode/${params.episode}`);
-      if (response.status === 200) {
-        setEpisode(response.data);
-      } else {
-        setError("Failed to fetch episode details.");
-      }
+      await getEpisode();
     } catch (error) {
       setError("An error occured while fecthing episode details.");
-      throw error;
     } finally {
       setIsloading(false);
     }
@@ -42,7 +39,7 @@ const Episode = ({ params }: EpisodeProp) => {
     return <div>Error: {error}</div>;
   }
 
-  if (!episode || isLoading) {
+  if (isLoading) {
     return <div>Loading episode details...</div>;
   }
 
@@ -50,12 +47,12 @@ const Episode = ({ params }: EpisodeProp) => {
     <div className="flex flex-col items-start">
       <section className="flex flex-col md:flex-row gap-8 items-start">
         <div className="w-fit md:w-[300px] flex items-center justify-center">
-          <img src={"/images/rick_and_morty_cover.jpeg"} alt={episode.name} />
+          <img src={"/images/rick_and_morty_cover.jpeg"} alt={episode?.name} />
         </div>
         <div className="flex flex-col gap-2 text-lg">
-          <h1 className="text-xl font-bold">{episode.name}</h1>
-          <p>Episode: {episode.episode}</p>
-          <p>Aired: {episode.air_date}</p>
+          <h1 className="text-xl font-bold">{episode?.name}</h1>
+          <p>Episode: {episode?.episode}</p>
+          <p>Aired: {episode?.air_date}</p>
         </div>
       </section>
       <section>{/* carousel */}</section>

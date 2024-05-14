@@ -1,21 +1,21 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { Character } from "./charactersInterface";
+import { Episodes } from "./type";
 
-interface CharactersState {
-  characters: Character[];
-  setCharacters: (characters: Character[]) => void;
+interface EpisodesState {
+  episodes: Episodes[];
+  setEpisodes: (episodes: Episodes[]) => void;
   page: number;
   setPage: (page: number) => void;
   totalPages: number;
   setTotalPages: (totalPages: number) => void;
 }
 
-const useCharacterStore = create<CharactersState>()(
+const useEpisodeStore = create<EpisodesState>()(
   persist(
     (set) => ({
-      characters: [],
-      setCharacters: (characters: Character[]): void => set({ characters }),
+      episodes: [],
+      setEpisodes: (episodes: Episodes[]): void => set({ episodes }),
       page: 1,
       setPage: (page: number) => set({ page }),
       totalPages: 0,
@@ -24,10 +24,10 @@ const useCharacterStore = create<CharactersState>()(
     {
       name: "rickAndMorty",
       partialize: (state) => ({
-        characters: state.characters,
+        episodes: state.episodes,
       }),
     }
   )
 );
 
-export default useCharacterStore;
+export default useEpisodeStore;
