@@ -5,22 +5,18 @@ import axios from "@/api/axios";
 import useCharacterStore from "@/utils/store/characters/characters";
 import Link from "next/link";
 import { NavArrow } from "../../../public/icons";
+import Loader from "@/components/loader/Loader";
+import DisplayCard from "@/components/DisplayCard";
 
 let Characters = () => {
-  let {
-    characters,
-    setCharacters,
-    page,
-    setPage,
-    totalPages,
-    setTotalPages,
-  } = useCharacterStore();
-  let [isLoading, setIsloading] = useState<boolean>(false);
-  let [error, setError] = useState<string | null>(null);
+  let { characters, setCharacters, page, setPage, totalPages, setTotalPages } =
+    useCharacterStore();
+  let [isLoading, setIsloading] = useState<boolean | undefined>(undefined);
+  let [error, setError] = useState<string | undefined>(undefined);
 
   let fetchCharacters = async (pageNum: number = page): Promise<void> => {
     setIsloading(true);
-    setError(null);
+    setError(undefined);
 
     let getCharacters = async () => {
       let response = await axios.get(`/character/?page=${pageNum}`);
@@ -43,14 +39,6 @@ let Characters = () => {
     fetchCharacters();
   }, []);
 
-  if (isLoading || !characters) {
-    return (
-      <div>
-        <h1 className="text-3xl font-bold">Loading...</h1>
-      </div>
-    );
-  }
-
   if (error) {
     return (
       <div>
@@ -60,7 +48,7 @@ let Characters = () => {
   }
 
   return (
-    <div className="w-full flex flex-col gap-8 pb-12">
+    <div className="w-full flex flex-col gap-8 pb-12 relative">
       <header className="font-bold w-full flex items-center justify-between">
         <h1 className="flex flex-col gap-1">
           <span className="text-3xl">Characters</span>
@@ -85,20 +73,38 @@ let Characters = () => {
           </button>
         </div>
       </header>
-      <section className="flex gap-8 flex-wrap justify-center md:justify-start items-center">
-        {characters?.map(({ name, id, image }) => (
-          <div
-            key={id}
-            className="w-full md:w-[300px] h-full md:h-[300px] character-image cursor-pointer hover:scale-[1.06] md:hover:scale-[1.1] transition-all ease-linear relative"
-          >
-            <img src={image} alt={name} className="" />
-            <div className="w-full h-full image-overlay">
-              <Link href={`/characters/${id}`} className="image-name">
-                {name}
-              </Link>
-            </div>
-          </div>
-        ))}
+      <section className="w-full flex gap-8 flex-wrap justify-center md:justify-start items-center">
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {characters?.map(({ name, id, image }) => (
+              <DisplayCard
+                key={id}
+                name={name}
+                alt={name}
+                link={`/characters/${id}`}
+                image={image}
+              />
+            ))}
+          </>
+        )}
+      </section>
+      <section className="w-full flex justify-between absolute bottom-0">
+        <button
+          onClick={() => fetchCharacters(1)}
+          disabled={page === 1}
+          className="bottom-nav"
+        >
+          &lt;&lt; First Page
+        </button>
+        <button
+          onClick={() => fetchCharacters(totalPages)}
+          disabled={page >= totalPages}
+          className="bottom-nav"
+        >
+          Last Page&gt;&gt;
+        </button>
       </section>
     </div>
   );

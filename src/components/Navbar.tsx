@@ -10,12 +10,13 @@ interface Navigation {
 }
 
 let Navbar = () => {
-  let pathName:string = usePathname();
-  let isActive = (pathname: string): boolean => pathName === pathname;
+  let pathName: string = usePathname();
   let navLinks: Navigation[] = [
     { name: "Characters", href: "/characters" },
     { name: "Episodes", href: "/episodes" },
   ];
+
+  let isActive = (pathname: string): boolean => pathName.startsWith(pathname);
 
   return (
     <nav className="flex justify-between items-center">

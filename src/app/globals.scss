@@ -53,7 +53,7 @@ body {
   .active {
     @apply text-primary;
   }
-  
+
   .home-btn {
     @apply h-[48px] min-w-[144px] font-semibold flex justify-center items-center rounded-lg py-[14.5px] px-[28.5px];
   }
@@ -71,11 +71,15 @@ body {
         @apply translate-y-0;
       }
       .image-name {
-        @apply text-xl font-bold text-center transition-all ease-linear;
+        @apply text-xl font-bold text-center transition-all ease-linear hover:text-primary focus:text-primary;
       }
-      &:hover > .image-name {
-        @apply text-2xl;
-      }
+      // &:hover > .image-name {
+      //   @apply text-2xl;
+      // }
     }
+  }
+
+  .bottom-nav {
+    @apply cursor-pointer transition-all ease-linear font-semibold hover:text-primary focus:text-primary text-xs md:text-sm xl:text-base;
   }
 }
