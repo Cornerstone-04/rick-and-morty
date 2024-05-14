@@ -46,7 +46,7 @@ let Episode = ({ params }: EpisodeProp) => {
 
   return (
     <div className="flex flex-col items-start">
-      <section className="flex flex-col md:flex-row gap-8 items-start">
+      <section className="flex flex-col-reverse md:flex-row gap-8 items-start">
         {isLoading ? (
           <Loader />
         ) : (
