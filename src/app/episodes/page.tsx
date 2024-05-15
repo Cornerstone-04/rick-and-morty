@@ -57,23 +57,19 @@ let Episodes = () => {
           </em>
         </h1>
         <div className="text-base flex gap-4">
-          <button
+          <NavArrow
             disabled={page === 1}
             onClick={() => fetchEpisodes(page - 1)}
             className="disabled:opacity-50"
-          >
-            <NavArrow className="" />
-          </button>
-          <button
+          />
+          <NavArrow
             disabled={page >= totalPages}
             onClick={() => fetchEpisodes(page + 1)}
-            className="disabled:opacity-50"
-          >
-            <NavArrow className="rotate-180" />
-          </button>
+            className="disabled:opacity-50 rotate-180"
+          />
         </div>
       </header>
-      <section className="flex gap-8 flex-wrap justify-center md:justify-start items-center">
+      <section className="flex gap-8 flex-wrap justify-center xl:justify-start items-center">
         {isLoading ? (
           <Loader />
         ) : (
