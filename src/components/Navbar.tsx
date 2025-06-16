@@ -22,7 +22,7 @@ let Navbar = () => {
     <nav className="flex justify-between items-center">
       <header>
         <Link href="/" className="logo">
-          <div className="w-fit p-2 bg-primary rounded">Rick</div>
+          <div className="w-fit p-2 bg-[#4BE41A] rounded">Rick</div>
           <div className="w-fit p-2 text-white">Morty</div>
         </Link>
       </header>

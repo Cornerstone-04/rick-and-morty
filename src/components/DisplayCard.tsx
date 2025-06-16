@@ -1,14 +1,15 @@
+// import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-interface DisplayCardProps  {
+interface DisplayCardProps {
   key: number;
   image: string;
   alt: string;
   link: string;
   name: string;
   subtitle?: string;
-};
+}
 
 const DisplayCard = ({
   key,
